@@ -13,9 +13,6 @@ namespace CriptoHelp
 
             y = -1;
 
-            //for (int z = 0; z < x.Length; z++)  
-            //foreach (string element in x)
-            //{
             switch (x)
             {
                 case "A":
@@ -108,8 +105,6 @@ namespace CriptoHelp
                     Console.WriteLine("Caractere Inválido!!");
                     break;
             }
-
-            //}
             return y.ToString();
         }
             public static int ParOuImpar(int x)
@@ -118,11 +113,13 @@ namespace CriptoHelp
 
                  resultado = x % 2;
 
-                 if (resultado == 1)
-                 {
-                    return 1;
-                 }
-                     return 0;
+            if (resultado == 1)
+            {
+                return 1;
+            }
+                return 0;
+
+                     
              }
            /*  public static string Encryption(string x ){
 
@@ -138,6 +135,7 @@ namespace CriptoHelp
             string text;
             Console.WriteLine("Hello From CriptoHelp!!\n HOW CAN I HELP YOU ?? (1 - encryption/ 2 - decryption)");
                 option = int.Parse(Console.ReadLine());
+            Console.WriteLine("\n");
 
             if (option == 1)
             {
@@ -152,6 +150,8 @@ namespace CriptoHelp
                 for (int z = 0; z < text.Length; z++)  {
                     matriz[z] = AlfaNumerico(text[z].ToString());
                     Console.WriteLine("matriz:" + matriz[z]);
+
+
                 }
                 //numbers = AlfaNumerico(text);
                 //Console.WriteLine("numbers:" + numbers.ToString());
