@@ -112,10 +112,10 @@ namespace CriptoHelp
                  int resultado;
 
                  resultado = x % 2;
-
+           
             if (resultado == 1)
             {
-                return 1;
+                return 1; 
             }
                 return 0;
 
@@ -131,27 +131,41 @@ namespace CriptoHelp
         
         public static void Main(string[] args)
         {
-            int option,tamanho;
+            int option,tamanho, y;
             string text;
             Console.WriteLine("Hello From CriptoHelp!!\n HOW CAN I HELP YOU ?? (1 - encryption/ 2 - decryption)");
                 option = int.Parse(Console.ReadLine());
-            Console.WriteLine("\n");
+
 
             if (option == 1)
             {
+                 
                 Console.WriteLine("Type your phrase: ");
                 text = Console.ReadLine();
                 text = text.Replace(" ", string.Empty); // substitui os espaços 
                 tamanho = ParOuImpar(text.Length);
+
                 if (tamanho == 1){
                     text = text + "A";
                 }
-                string[] matriz = new string[text.Length];
-                for (int z = 0; z < text.Length; z++)  {
-                    matriz[z] = AlfaNumerico(text[z].ToString());
-                    Console.WriteLine("matriz:" + matriz[z]);
+
+                y = text.Length / 2;
 
 
+                string[,] matriz = new string[2,y];
+                int c;
+                c = 0;
+                for (int iLinha = 0; iLinha < 2; iLinha++){
+
+                    for (int z = 0; z < y ; z++)  {
+                      
+                        matriz[iLinha,z] = AlfaNumerico(text[c].ToString());
+                        c++;
+                        Console.WriteLine("matriz [{0},{1}] : {2}",iLinha +1, z+1, matriz[iLinha,z]);
+
+                    }
+
+                    Console.WriteLine("\n");
                 }
                 //numbers = AlfaNumerico(text);
                 //Console.WriteLine("numbers:" + numbers.ToString());
