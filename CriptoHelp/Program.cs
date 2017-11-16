@@ -146,7 +146,7 @@ namespace CriptoHelp
                 tamanho = ParOuImpar(text.Length);
 
                 if (tamanho == 1){
-                    text = text + "A";
+                    text = text + "H";
                 }
 
                 y = text.Length / 2;
@@ -174,8 +174,9 @@ namespace CriptoHelp
             {
                 //run class of decryption
             }else {
-                Console.Write("Invalid operation... you have to choose between 1 or 2 ");
+                Console.WriteLine("Invalid operation... you have to choose between 1 or 2 ");
             }
+
         }
 
     }
