@@ -121,17 +121,13 @@ namespace CriptoHelp
 
                      
              }
-           /*  public static string Encryption(string x ){
-
-             }
-
-             public static string Decryption(string x){
-
-             }*/
-        
         public static void Main(string[] args)
         {
-            int option,tamanho, y;
+
+            int[,] chave = new int[2, 2];
+
+            int option, tamanho, y;
+            int i, j;
             string text;
             Console.WriteLine("Hello From CriptoHelp!!\n HOW CAN I HELP YOU ?? (1 - encryption/ 2 - decryption)");
                 option = int.Parse(Console.ReadLine());
@@ -139,12 +135,18 @@ namespace CriptoHelp
 
             if (option == 1)
             {
-                 
                 Console.WriteLine("Type your phrase: ");
                 text = Console.ReadLine();
+                for (i = 0; i < 2; i++){
+                    for (j = 0; j < 2;j++){
+                        Console.WriteLine("Type your key[{0},{1}]: ", i + 1, j + 1);
+                        chave[i,j] = int.Parse(Console.ReadLine());
+                    }
+                }
+
                 text = text.Replace(" ", string.Empty); // substitui os espaços 
                 tamanho = ParOuImpar(text.Length);
-
+           
                 if (tamanho == 1){
                     text = text + "H";
                 }
@@ -153,26 +155,141 @@ namespace CriptoHelp
 
 
                 string[,] matriz = new string[2,y];
-                int c;
-                c = 0;
-                for (int iLinha = 0; iLinha < 2; iLinha++){
+                int l;
+                l = 0;
+                for (i = 0; i < 2; i++){
 
-                    for (int z = 0; z < y ; z++)  {
+                    for ( j = 0;j < y ; j++)  {
                       
-                        matriz[iLinha,z] = AlfaNumerico(text[c].ToString());
-                        c++;
-                        Console.WriteLine("matriz [{0},{1}] : {2}",iLinha +1, z+1, matriz[iLinha,z]);
+                        matriz[i,j] = AlfaNumerico(text[l].ToString());
+                        l++;
+                        Console.WriteLine("matriz [{0},{1}] : {2}",i +1, j+1, matriz[i,j]);
 
                     }
 
                     Console.WriteLine("\n");
                 }
-                //numbers = AlfaNumerico(text);
-                //Console.WriteLine("numbers:" + numbers.ToString());
+
+
+
+
+
+
             }
             else if (option == 2)
             {
-                //run class of decryption
+                //Começo dos calculos de chave 
+                int[,] chaveInversa = new int[2, 2];
+                int  det, a, b, c, d;
+
+                Console.WriteLine("Type your phrase: ");
+                text = Console.ReadLine();
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 2; j++)
+                    {
+                        Console.WriteLine("Type your key[{0},{1}]: ", i + 1, j + 1);
+                        chave[i, j] = int.Parse(Console.ReadLine());
+                    }
+                }
+
+
+                det = 0;
+                det = (chave[0, 0] * chave[1, 1]) - (chave[0, 1] * chave[1, 0]);
+                Console.WriteLine("Seu determinante é de :" + det);
+
+                if (det == 1)
+                {
+                    det = 1;
+                }
+                else if (det == 3)
+                {
+                    det = 9;
+                }
+                else if (det == 5)
+                {
+                    det = 21;
+                }
+                else if (det == 7)
+                {
+                    det = 15;
+                }
+                else if (det == 9)
+                {
+                    det = 3;
+                }
+                else if (det == 11)
+                {
+                    det = 19;
+                }
+                else if (det == 15)
+                {
+                    det = 7;
+                }
+                else if (det == 17)
+                {
+                    det = 23;
+                }
+                else if (det == 19)
+                {
+                    det = 11;
+                }
+                else if (det == 21)
+                {
+                    det = 5;
+                }
+                else if (det == 23)
+                {
+                    det = 17;
+                }
+                else if (det == 25)
+                {
+                    det = 25;
+                }
+                else
+                {
+                    Console.WriteLine("Error...");
+                }
+
+                a = chave[0, 0];
+                b = chave[0, 1];
+                c = chave[1, 0];
+                d = chave[1, 1];
+
+                chaveInversa[0, 0] = d;
+                chaveInversa[0, 1] = b;
+                chaveInversa[1, 0] = c;
+                chaveInversa[1, 1] = a;
+
+
+                Console.WriteLine("\nSeu det é de: " + det);
+
+
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 2; j++)
+                    {
+                        Console.WriteLine("chaveInversa[{0},{1}]: {2}", i + 1, j + 1, chaveInversa[i, j]);
+                        chaveInversa[i, j] = (det * chaveInversa[i, j]) % 26;
+
+
+                    }
+                }
+
+                Console.WriteLine("\n");
+
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 2; j++)
+                    {
+                        Console.WriteLine("chaveInversa[{0},{1}]: {2}", i + 1, j + 1, chaveInversa[i, j]);
+
+
+
+                    }
+                }
+
+
             }else {
                 Console.WriteLine("Invalid operation... you have to choose between 1 or 2 ");
             }
