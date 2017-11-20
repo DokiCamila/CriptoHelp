@@ -109,6 +109,7 @@ namespace CriptoHelp
         }
             public static int ParOuImpar(int x)
              {
+            //Verifica se a frase contem numeros pares 
                  int resultado;
 
                  resultado = x % 2;
@@ -121,6 +122,8 @@ namespace CriptoHelp
 
                      
              }
+
+
         public static void Main(string[] args)
         {
 
@@ -147,10 +150,12 @@ namespace CriptoHelp
                 text = text.Replace(" ", string.Empty); // substitui os espaços 
                 tamanho = ParOuImpar(text.Length);
            
+                //Adiciona mais uma letra
                 if (tamanho == 1){
                     text = text + "H";
                 }
 
+                //Numero de colunas na matriz
                 y = text.Length / 2;
 
 
