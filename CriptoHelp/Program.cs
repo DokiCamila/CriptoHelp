@@ -4,9 +4,124 @@ namespace CriptoHelp
 {
     class MainClass
     {
+        public static string NumericoAlpa(string x)
+        {
+            string y;
+            x = x.ToUpper();
 
+            switch (x)
+            {
+                case "0":
+                    y = "A";
+                    break;
 
-        public static string AlfaNumerico(string x)
+                case "1":
+                    y = "B";
+                    break;
+
+                case "2":
+                    y = "C";
+                    break;
+
+                case "3":
+                    y = "D";
+                    break;
+
+                case "4":
+                    y = "E";
+                    break;
+
+                case "5":
+                    y = "F";
+                    break;
+
+                case "6":
+                    y = "G";
+                    break;
+
+                case "7":
+                    y = "H";
+                    break;
+
+                case "8":
+                    y = "I";
+                    break;
+
+                case "9":
+                    y = "J";
+                    break;
+
+                case "10":
+                    y = "K";
+                    break;
+
+                case "11":
+                    y = "L";
+                    break;
+
+                case "12":
+                    y = "M";
+                    break;
+
+                case "13":
+                    y = "N";
+                    break;
+
+                case "14":
+                    y = "O";
+                    break;
+
+                case "15":
+                    y = "P";
+                    break;
+
+                case "16":
+                    y = "Q";
+                    break;
+
+                case "17":
+                    y = "R";
+                    break;
+
+                case "18":
+                    y = "S";
+                    break;
+
+                case "19":
+                    y = "T";
+                    break;
+
+                case "20":
+                    y = "U";
+                    break;
+
+                case "21":
+                    y = "V";
+                    break;
+
+                case "22":
+                    y = "W";
+                    break;
+
+                case "23":
+                    y = "X";
+                    break;
+
+                case "24":
+                    y = "Y";
+                    break;
+
+                case "25":
+                    y = "Z";
+                    break;
+
+                default:
+                    Console.WriteLine("Caractere Inválido!!");
+                    break;
+            }
+        }
+        
+        public static int AlfaNumerico(string x)
         {
             int y;
             x = x.ToUpper();
@@ -105,7 +220,7 @@ namespace CriptoHelp
                     Console.WriteLine("Caractere Inválido!!");
                     break;
             }
-            return y.ToString();
+            return y;
         }
             public static int ParOuImpar(int x)
              {
@@ -128,7 +243,7 @@ namespace CriptoHelp
         {
 
             int[,] chave = new int[2, 2];
-
+            int[,] resultado;
             int option, tamanho, y;
             int i, j;
             string text;
@@ -159,21 +274,82 @@ namespace CriptoHelp
                 y = text.Length / 2;
 
 
-                string[,] matriz = new string[2,y];
+                int[,] texto = new int[2,y];
                 int l;
                 l = 0;
                 for (i = 0; i < 2; i++){
 
                     for ( j = 0;j < y ; j++)  {
                       
-                        matriz[i,j] = AlfaNumerico(text[l].ToString());
+                        texto[i,j] = AlfaNumerico(int.Parse(text[l]));
                         l++;
-                        Console.WriteLine("matriz [{0},{1}] : {2}",i +1, j+1, matriz[i,j]);
+                        Console.WriteLine("matriz [{0},{1}] : {2}",i +1, j+1, texto[i,j]);
 
                     }
 
                     Console.WriteLine("\n");
                 }
+
+                resultado = new int[2, y];
+               
+                /// MATRIZ GERADA///
+
+
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < y; j++)
+                    {
+                        for (int k = 0; k < 2; k++)
+                            resultado[i, j] += (texto[i,k] * chave[k,j]);
+
+
+                    }
+                }
+
+                Console.WriteLine("\n Matriz gerada");
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < y; j++)
+                    {
+                        Console.WriteLine("{0}", resultado[i, j]);
+                    }
+                }
+
+                Console.WriteLine("\n Matriz com modulo 26");
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < y; j++)
+                    {
+
+
+
+                        resultado[i, j] = (resultado[i, j] % 26);
+
+
+
+
+                        Console.WriteLine("{0}", resultado[i, j]);
+
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
