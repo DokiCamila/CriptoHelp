@@ -4,118 +4,118 @@ namespace CriptoHelp
 {
     class MainClass
     {
-        public static string NumericoAlpa(string x)
+        public static string NumericoAlfa(int x)
         {
             string y;
             y = "";
             switch (x)
             {
-                case "0":
+                case 0:
                     y = "A";
                     break;
 
-                case "1":
+                case 1:
                     y = "B";
                     break;
 
-                case "2":
+                case 2:
                     y = "C";
                     break;
 
-                case "3":
+                case 3:
                     y = "D";
                     break;
 
-                case "4":
+                case 4:
                     y = "E";
                     break;
 
-                case "5":
+                case 5:
                     y = "F";
                     break;
 
-                case "6":
+                case 6:
                     y = "G";
                     break;
 
-                case "7":
+                case 7:
                     y = "H";
                     break;
 
-                case "8":
+                case 8:
                     y = "I";
                     break;
 
-                case "9":
+                case 9:
                     y = "J";
                     break;
 
-                case "10":
+                case 10:
                     y = "K";
                     break;
 
-                case "11":
+                case 11:
                     y = "L";
                     break;
 
-                case "12":
+                case 12:
                     y = "M";
                     break;
 
-                case "13":
+                case 13:
                     y = "N";
                     break;
 
-                case "14":
+                case 14:
                     y = "O";
                     break;
 
-                case "15":
+                case 15:
                     y = "P";
                     break;
 
-                case "16":
+                case 16:
                     y = "Q";
                     break;
 
-                case "17":
+                case 17:
                     y = "R";
                     break;
 
-                case "18":
+                case 18:
                     y = "S";
                     break;
 
-                case "19":
+                case 19:
                     y = "T";
                     break;
 
-                case "20":
+                case 20:
                     y = "U";
                     break;
 
-                case "21":
+                case 21:
                     y = "V";
                     break;
 
-                case "22":
+                case 22:
                     y = "W";
                     break;
 
-                case "23":
+                case 23:
                     y = "X";
                     break;
 
-                case "24":
+                case 24:
                     y = "Y";
                     break;
 
-                case "25":
+                case 25:
                     y = "Z";
                     break;
 
                 default:
-                    Console.WriteLine("Caractere Inválido!!");
+                    Console.WriteLine("Numero Inválido!!");
                     break;
             }
 
@@ -248,6 +248,7 @@ namespace CriptoHelp
             int tamanho, y ;
             int i, j;
             string option, text;
+            string[] cifrada;
             Console.WriteLine("Hello From CriptoHelp!!\n HOW CAN I HELP YOU ?? (1 - encryption/ 2 - decryption)");
                 option = Console.ReadLine();
 
@@ -276,9 +277,9 @@ namespace CriptoHelp
                 //Numero de colunas na matriz
                 y = text.Length / 2;
 
-                Console.WriteLine("O numeros de coluna que temos é igual á : {0}",y);
-
+                // Transformando em numeros
                 int[,] texto = new int[2,y];
+
                 int l;
                 l = 0;
                 for (i = 0; i < 2; i++){
@@ -331,39 +332,32 @@ namespace CriptoHelp
 
                     }
                 }
+                cifrada = new string[text.Length];
+                for (int k = 0; k < text.Length;k++){
+                    for (i = 0; i < 2; i++)
+                    {
+                        int h;
+                        h = 0;
+                        for (j = 0; j < y; j++)
+                        {
 
+                            cifrada[k] += NumericoAlfa(resultado[i, j]);
+                            h++;
+                        }
+                    }
 
+                }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                Console.Write("The cipher phrase: " + cifrada[i]);
 
             }
+
             else if (option == "2")
             {
-                //Começo dos calculos de chave 
-                int[,] chaveInversa = new int[2, 2];
-                int  det, a, b, c, d;
-
                 Console.WriteLine("Type your phrase: ");
                 text = Console.ReadLine();
+                text = text.Replace(" ", string.Empty); // substitui os espaços 
+                Console.WriteLine("Seu texto contem {0} letras :" , text.Length);
                 for (i = 0; i < 2; i++)
                 {
                     for (j = 0; j < 2; j++)
@@ -374,11 +368,41 @@ namespace CriptoHelp
                 }
 
 
+
+                //Numero de colunas na matriz
+                y = text.Length / 2;
+
+                // Transformando em numeros
+                int[,] texto = new int[2,y];
+
+                int l;
+                l = 0;
+                for (i = 0; i < 2; i++){
+
+                    for ( j = 0;j < y ; j++)  {
+                      
+                        texto[i,j] = AlfaNumerico(text[l].ToString());
+                        l++;
+                        Console.WriteLine("matriz [{0},{1}] : {2}",i +1, j+1, texto[i,j]);
+
+                    }
+
+                    Console.WriteLine("\n");
+                }
+
+
+                //Começo dos calculos de chave 
+                int[,] chaveInversa = new int[2, 2];
+                int  det, a, b, c, d;
+
+
+
                 det = 0;
                 det = (chave[0, 0] * chave[1, 1]) - (chave[0, 1] * chave[1, 0]);
                 Console.WriteLine("Seu determinante é de :" + det);
 
                 if (det == 1)
+
                 {
                     det = 1;
                 }
@@ -436,11 +460,23 @@ namespace CriptoHelp
                 c = chave[1, 0];
                 d = chave[1, 1];
 
-                chaveInversa[0, 0] = d;
-                chaveInversa[0, 1] = b;
-                chaveInversa[1, 0] = c;
-                chaveInversa[1, 1] = a;
+               
 
+                chaveInversa[0, 0] = d;
+                chaveInversa[0, 1] = b *(-1);
+                chaveInversa[1, 0] = c*(-1);
+                chaveInversa[1, 1] = a;
+                do
+                {
+                    chaveInversa[0, 1] = chaveInversa[0, 1] + 26; 
+
+                } while (chaveInversa[0, 1] < 0);
+                 
+                do
+                {
+                    chaveInversa[1, 0] = chaveInversa[1, 0] + 26;
+
+                } while (chaveInversa[1, 0] < 0);
 
                 Console.WriteLine("\nSeu det é de: " + det);
 
@@ -455,6 +491,8 @@ namespace CriptoHelp
 
                     }
                 }
+               /* chaveInversa[0, 1] = ( chaveInversa[0, 1]* (-1));
+                chaveInversa[1, 0] = (chaveInversa[0, 1]*(-1));*/
 
                 Console.WriteLine("\n");
 
@@ -468,6 +506,65 @@ namespace CriptoHelp
 
                     }
                 }
+                resultado = new int[2, y];
+                int res = 0;
+                /// MATRIZ GERADA///
+
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < y; j++)
+                    {
+                        for (int k = 0; k < 2; k++)
+                        {
+                            res += (chaveInversa[i, k] * texto[k, j]);
+                        }
+
+                        resultado[i, j] = res;
+                        res = 0;
+                    }
+                }
+
+                Console.WriteLine("\n Matriz gerada");
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 3; j++)
+                    {
+                        Console.WriteLine("{0}", resultado[i, j]);
+                    }
+                }
+
+                Console.WriteLine("\n Matriz com modulo 26");
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < y; j++)
+                    {
+                        resultado[i, j] = (resultado[i, j] % 26);
+                        Console.WriteLine("{0}", resultado[i, j]);
+
+                    }
+                }
+                cifrada = new string[text.Length];
+                for (int k = 0; k < text.Length; k++)
+                {
+                    for (i = 0; i < 2; i++)
+                    {
+                        int h;
+                        h = 0;
+                        for (j = 0; j < y; j++)
+                        {
+
+                            cifrada[k] += NumericoAlfa(resultado[i, j]);
+                            h++;
+                        }
+                    }
+
+                }
+
+                Console.Write("The original phrase: " + cifrada[i]);
+
+
+
+
 
 
             }else {
