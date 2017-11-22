@@ -313,14 +313,14 @@ namespace CriptoHelp
                     }
                 }
 
-                Console.WriteLine("\n Matriz gerada");
+               /* Console.WriteLine("\n Matriz gerada");
                 for (i = 0; i < 2; i++)
                 {
                     for (j = 0; j < 3; j++)
                     {
                         Console.WriteLine("{0}", resultado[i, j]);
                     }
-                }
+                }*/
 
                 Console.WriteLine("\n Matriz com modulo 26");
                 for (i = 0; i < 2; i++)
@@ -399,7 +399,7 @@ namespace CriptoHelp
 
                 det = 0;
                 det = (chave[0, 0] * chave[1, 1]) - (chave[0, 1] * chave[1, 0]);
-                Console.WriteLine("Seu determinante é de :" + det);
+                //Console.WriteLine("Seu determinante é de :" + det);
 
                 if (det == 1)
 
@@ -478,7 +478,7 @@ namespace CriptoHelp
 
                 } while (chaveInversa[1, 0] < 0);
 
-                Console.WriteLine("\nSeu det é de: " + det);
+                //Console.WriteLine("\nSeu det é de: " + det);
 
 
                 for (i = 0; i < 2; i++)
@@ -496,7 +496,7 @@ namespace CriptoHelp
 
                 Console.WriteLine("\n");
 
-                for (i = 0; i < 2; i++)
+              /*  for (i = 0; i < 2; i++)
                 {
                     for (j = 0; j < 2; j++)
                     {
@@ -505,7 +505,7 @@ namespace CriptoHelp
 
 
                     }
-                }
+                }*/
                 resultado = new int[2, y];
                 int res = 0;
                 /// MATRIZ GERADA///
@@ -524,14 +524,14 @@ namespace CriptoHelp
                     }
                 }
 
-                Console.WriteLine("\n Matriz gerada");
+               /* Console.WriteLine("\n Matriz gerada");
                 for (i = 0; i < 2; i++)
                 {
                     for (j = 0; j < 3; j++)
                     {
                         Console.WriteLine("{0}", resultado[i, j]);
                     }
-                }
+                }*/
 
                 Console.WriteLine("\n Matriz com modulo 26");
                 for (i = 0; i < 2; i++)
@@ -539,7 +539,7 @@ namespace CriptoHelp
                     for (j = 0; j < y; j++)
                     {
                         resultado[i, j] = (resultado[i, j] % 26);
-                        Console.WriteLine("{0}", resultado[i, j]);
+
 
                     }
                 }
@@ -568,7 +568,7 @@ namespace CriptoHelp
 
 
             }else {
-                Console.WriteLine("Invalid operation... you have to choose between 1 or 2 ");
+                Console.WriteLine("Invalid operation... you must have to choose between 1 or 2 ");
             }
 
         }
