@@ -7,8 +7,7 @@ namespace CriptoHelp
         public static string NumericoAlpa(string x)
         {
             string y;
-            x = x.ToUpper();
-
+            y = "";
             switch (x)
             {
                 case "0":
@@ -119,6 +118,8 @@ namespace CriptoHelp
                     Console.WriteLine("Caractere Inválido!!");
                     break;
             }
+
+            return y;
         }
         
         public static int AlfaNumerico(string x)
@@ -244,27 +245,29 @@ namespace CriptoHelp
 
             int[,] chave = new int[2, 2];
             int[,] resultado;
-            int option, tamanho, y;
+            int tamanho, y ;
             int i, j;
-            string text;
+            string option, text;
             Console.WriteLine("Hello From CriptoHelp!!\n HOW CAN I HELP YOU ?? (1 - encryption/ 2 - decryption)");
-                option = int.Parse(Console.ReadLine());
+                option = Console.ReadLine();
 
 
-            if (option == 1)
+            if (option == "1")
             {
                 Console.WriteLine("Type your phrase: ");
                 text = Console.ReadLine();
-                for (i = 0; i < 2; i++){
-                    for (j = 0; j < 2;j++){
+                text = text.Replace(" ", string.Empty); // substitui os espaços 
+                tamanho = ParOuImpar(text.Length);
+                Console.WriteLine("Seu texto contem {0} letras :" , text.Length);
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 2; j++)
+                    {
                         Console.WriteLine("Type your key[{0},{1}]: ", i + 1, j + 1);
-                        chave[i,j] = int.Parse(Console.ReadLine());
+                        chave[i, j] = int.Parse(Console.ReadLine());
                     }
                 }
 
-                text = text.Replace(" ", string.Empty); // substitui os espaços 
-                tamanho = ParOuImpar(text.Length);
-           
                 //Adiciona mais uma letra
                 if (tamanho == 1){
                     text = text + "H";
@@ -273,6 +276,7 @@ namespace CriptoHelp
                 //Numero de colunas na matriz
                 y = text.Length / 2;
 
+                Console.WriteLine("O numeros de coluna que temos é igual á : {0}",y);
 
                 int[,] texto = new int[2,y];
                 int l;
@@ -281,7 +285,7 @@ namespace CriptoHelp
 
                     for ( j = 0;j < y ; j++)  {
                       
-                        texto[i,j] = AlfaNumerico(int.Parse(text[l]));
+                        texto[i,j] = AlfaNumerico(text[l].ToString());
                         l++;
                         Console.WriteLine("matriz [{0},{1}] : {2}",i +1, j+1, texto[i,j]);
 
@@ -289,27 +293,28 @@ namespace CriptoHelp
 
                     Console.WriteLine("\n");
                 }
-
+                Console.ReadLine();
                 resultado = new int[2, y];
-               
+                int res=0;
                 /// MATRIZ GERADA///
-
 
                 for (i = 0; i < 2; i++)
                 {
                     for (j = 0; j < y; j++)
                     {
-                        for (int k = 0; k < 2; k++)
-                            resultado[i, j] += (texto[i,k] * chave[k,j]);
-
-
+                        for (int k = 0; k < 2;k++)
+                        {
+                            res += (texto[i, k] * chave[k, j]);   
+                        }
+                        resultado[i, j] = res;
+                        res = 0;
                     }
                 }
 
                 Console.WriteLine("\n Matriz gerada");
                 for (i = 0; i < 2; i++)
                 {
-                    for (j = 0; j < y; j++)
+                    for (j = 0; j < 3; j++)
                     {
                         Console.WriteLine("{0}", resultado[i, j]);
                     }
@@ -320,14 +325,7 @@ namespace CriptoHelp
                 {
                     for (j = 0; j < y; j++)
                     {
-
-
-
                         resultado[i, j] = (resultado[i, j] % 26);
-
-
-
-
                         Console.WriteLine("{0}", resultado[i, j]);
 
                     }
@@ -357,7 +355,7 @@ namespace CriptoHelp
 
 
             }
-            else if (option == 2)
+            else if (option == "2")
             {
                 //Começo dos calculos de chave 
                 int[,] chaveInversa = new int[2, 2];
