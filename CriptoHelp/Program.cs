@@ -302,10 +302,11 @@ namespace CriptoHelp
                 {
                     for (j = 0; j < y; j++)
                     {
-                        for (int k = 0; k < 2;k++)
+                        for (int k = 0; k < 2; k++)
                         {
-                            res += (texto[i, k] * chave[k, j]);   
-                        }
+                            res += ( chave[i, k] * texto[k, j] );
+                        } 
+
                         resultado[i, j] = res;
                         res = 0;
                     }
